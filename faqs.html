@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>submit form</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="152x152" href="assets/img/apple-icon-152x152.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Image-Uploader.css">
+    <link rel="stylesheet" href="assets/css/Codeblock.css">
+    <link rel="stylesheet" href="assets/css/Faq-by-pomdre.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/MUSA_no-more-tables.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Quote-Card.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean fixed-top">
+        <div class="container"><a class="navbar-brand" data-bs-hover-animate="pulse" href="#">Root Android And Ethical Hacker | YT</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-bs-hover-animate="pulse" href="/faqs.html#">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" data-bs-hover-animate="pulse" href="/faqs.html#">FAQ'S</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-bs-hover-animate="pulse" href="/projects.html#">Projects</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="container">
+        <section id="faq" style="padding: 2px;margin: 11px;">
+            <hr class="star-dark mb-5">
+            <h2 class="text-uppercase text-center" style="font-size: 48;">FAQ's</h2><br >
+            <div class="container">
+                <div class="faqelement"><button class="btn btn-primary faq on" data-bs-hover-animate="pulse" id="sheets-script-url" type="button" style="box-shadow: none;">How to get google sheets script URL ?</button>
+                    <div class="panel">
+                        <h1><strong>1. Create a new Google Sheet</strong><br></h1>
+                        <ul>
+                            <li>First, go to&nbsp;<a href="https://docs.google.com/spreadsheets">Google Sheets</a>&nbsp;and&nbsp;<strong>Start a new spreadsheet</strong>&nbsp;with the&nbsp;<strong>Blank&nbsp;template</strong>.<br></li>
+                            <li>Rename it&nbsp;<strong>Email Subscribers</strong>. Or whatever, it doesn't matter.<br></li>
+                            <li>Put the following headers into the first row:<br></li>
+                        </ul><div class="container">
+    <div class="row">
+        <div id="no-more-tables">
+            <table class="col-md-12 table-bordered table-striped table-condensed cf">
+        		<thead class="cf">
+        			<tr>
+        				<th> </th>
+        				<th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>...</th>
+
+
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr>
+        				<td>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+        				<td>timestamp</td>
+        				<td>name</td>
+        				<td>email</td>
+        				<td>...&nbsp;&nbsp;</td>
+        				
+        			</tr>
+                    <tr>
+        				<td>&nbsp;</td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				
+        			</tr>
+   
+
+        		</tbody>
+        	</table>
+        </div>
+    </div>
+</div><blockquote class="quote-card">
+    
+<p>To learn how to add additional input fields, <a href="#7-adding-additional-form-data">checkout section 7 below</a>.</p>
+
+           </blockquote>
+                        <h2>2. Create a Google Apps Script</h2>
+                        <ul>
+                            <li>Click on&nbsp;<code>Tools &gt; Script Editor…</code>&nbsp;which should open a new tab.</li>
+                            <li> Rename it&nbsp;<code>Submit Form to Google Sheets</code>&nbsp;<span style="text-decoration: underline;">Make sure to wait for it to actually save and update the title before editing the script .</span></li>
+                            <li>Now, delete the delete everything in it.</li>
+                            <li>Paste the following script in it's place and&nbsp;<code>File &gt; Save<br ></code><pre class="codeblock"><code>var sheetName = 'Sheet1'
+var scriptProp = PropertiesService.getScriptProperties()
+
+function intialSetup () {
+  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  scriptProp.setProperty('key', activeSpreadsheet.getId())
+}
+
+function doPost (e) {
+  var lock = LockService.getScriptLock()
+  lock.tryLock(10000)
+
+  try {
+    var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+    var sheet = doc.getSheetByName(sheetName)
+
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    var nextRow = sheet.getLastRow() + 1
+
+    var newRow = headers.map(function(header) {
+      return header === 'timestamp' ? new Date() : e.parameter[header]
+    })
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  catch (e) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  finally {
+    lock.releaseLock()
+  }
+}</pre></code><blockquote class="quote-card">
+    
+<p>If you want to better understand what this script is doing, checkout the <a href="https://github.com/jamiewilson/form-to-google-sheets/blob/master/form-script-commented.js"><code>form-script-commented.js</code></a> file in the repo for a detailed explanation. </p>
+
+            </blockquote></li>
+                        </ul>
+                        <div>
+                            <h2><strong>3. Run the setup function</strong><br></h2>
+                            <ul>
+                                <li>Next, go to&nbsp;<code>Run &gt; Run Function &gt; initialSetup&nbsp;</code>to run this function.<br></li>
+                                <li>In the&nbsp;<code>Authorization Required&nbsp;</code>&nbsp;dialog, click on&nbsp;<code>Review Permissions</code>&nbsp;.</li>
+                                <li>Sign in or pick the Google account associated with this projects.</li>
+                                <li>You should see a dialog that says <code>Hi {Your Name} ,&nbsp;Submit Form to Google Sheets wants to</code>&nbsp;...</li>
+                                <li>&nbsp;Click&nbsp;<code>Allow</code></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h1>4. Add a new project trigger </h1><ul>
+    <li>Click on <code>Edit &gt; Current project’s triggers</code>. </li>
+    <li>In the dialog click <code>No triggers set up. Click here to add one now.</code> </li>
+    <li>In the dropdowns select <code>doPost</code></li>
+    <li>Set the events fields to <code>From spreadsheet</code> and <code>On form submit</code></li>
+    <li>Then click <code>Save</code></li>
+</ul></div>
+                        <div>
+                            <h1>5. Publish the project as a web app</h1><ul>
+    <li>Click on <code>Publish &gt; Deploy as web app…</code>.</li>
+    <li>Set <code>Project Version</code> to <code>New</code> and put <code>initial version</code> in the input field below.</li>
+    <li>Leave <code>Execute the app as:</code> set to <code>Me(your@address.com)</code>.</li>
+    <li>For <code>Who has access to the app:</code> select <code>Anyone, even anonymous</code>.</li>
+    <li>Click <code>Deploy</code>.</li>
+    <li>In the popup, copy the <code>Current web app URL</code> from the dialog.</li>
+    <li>And click <code>OK</code>.</li>
+</ul><blockquote class="quote-card">
+    
+<p><strong>IMPORTANT!</strong> If you have a custom domain with Gmail, you <em>might</em> need to click <code>OK</code>, refresh the page, and then go to <code>Publish &gt; Deploy as web app…</code> again to get the proper web app URL. It should look something like <code>https://script.google.com/a/yourdomain.com/macros/s/XXXX…</code>.</p>
+
+           </blockquote></div>
+                        <div>
+                            <h1>6. Input your web app URL</h1>
+                            <p>Open the file named&nbsp;<code>submit-form.js</code>&nbsp;On line 1 paste your&nbsp;SCRIPT URL inside:&nbsp; &nbsp;' '<br><strong>You are done !</strong></p>
+                        </div>
+                        <div>
+                            <h1 id="7">7. Adding additional form data</h1><p>To capture additional data, you&#39;ll just need to create new columns with titles matching exactly the <code>name</code> values from your form inputs. For example, if you want to add first and last name inputs, you&#39;d give them <code>name</code> values like so:</p><pre class="codeblock"><code>
+&#60;form name="submit-to-google-sheet"&#x3e;
+  &#60;input name="email" type="email" placeholder="Email" required&#x3e;
+  &#60;input name="firstName" type="text" placeholder="First Name"&#x3e;
+  &#60;input name="lastName" type="text" placeholder="Last Name"&#x3e;
+  &#60;button type="submit"&#x3e;Send&#60;/button&#x3e;
+  
+  </pre></code>
+                            <p>Then create new headers with the exact, case-sensitive&nbsp;name&nbsp;values:<br><div class="container">
+    <div class="row">
+        <div id="no-more-tables">
+            <table class="col-md-12 table-bordered table-striped table-condensed cf">
+        		<thead class="cf">
+        			<tr>
+        				<th> </th>
+        				<th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>...</th>
+
+
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr>
+        				<td>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+        				<td>timestamp</td>
+        				<td>email</td>
+        				<td>firstName</td>
+                        <td>lastName</td>
+        				<td>...&nbsp;&nbsp;</td>
+        				
+        			</tr>
+                    <tr>
+        				<td>&nbsp;</td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+        				<td></td>
+                        <td></td>
+        				
+        			</tr>
+   
+
+        		</tbody>
+        	</table>
+        </div>
+    </div>
+</div></p>
+                        </div>
+                    </div>
+                </div><br >
+                <div class="faqelement"><button class="btn btn-primary faq on" data-bs-hover-animate="pulse" type="button" style="box-shadow: none;">How to get imgbb API key ?</button>
+                    <div class="panel">
+                        <ul>
+                            <li>Go to&nbsp;<a href="https://api.imgbb.com/" target="_blank">https://api.imgbb.com/<br></a></li>
+                            <li>Log in or signup&nbsp;in imgbb&nbsp;</li>
+                            <li>come back to <a href="https://api.imgbb.com/">https://api.imgbb.com/</a></li>
+                            <li>Now click on&nbsp;<code>Get Api Key</code>&nbsp;copy that key</li>
+                            <li>Now open&nbsp;<code>Bootstrap-Image-Uploader.js<br></code></li>
+                            <li>Paste that Key in third line inside&nbsp;<code>" "</code>&nbsp;double inverted colons&nbsp;&nbsp;</li>
+                            <li>Now your image uploading is done&nbsp;</li>
+                        </ul>
+                    </div>
+                </div><br >
+                <div class="faqelement"><button class="btn btn-primary faq on" data-bs-hover-animate="pulse" type="button" style="box-shadow: none;">Why is the form not saving in sheets ?</button>
+                    <div class="panel">
+                        <ul>
+                            <li>I didnt put any&nbsp;<code>Name</code>&nbsp;fields in form so you need to insert it manually and make sure that the name matches exactly as it is&nbsp;</li>
+                            <li>You need to add <code>url</code>&nbsp;in sheets to get the URL of image in sheets&nbsp;<blockquote class="quote-card">
+    
+<p>For more info in <code>name</code> tag go to section 7 in first qustion
+</p>
+
+</blockquote>
+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <hr class="star-dark mb-5">
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/Bootstrap-Image-Uploader.js"></script>
+    <script src="assets/js/Faq-by-pomdre.js"></script>
+    <script src="assets/js/submit-form.js"></script>
+</body>
+
+</html>
